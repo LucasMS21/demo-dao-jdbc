@@ -42,12 +42,21 @@ public class Program {
         System.out.println("Inserted! New id = " + newSeller.getId());
 
         System.out.println("\n==== TEST 5: seller update ====");
-        System.out.println("Insert seller to update id: ");
+        System.out.print("Insert seller to update id: ");
         int updateId = sc.nextInt();
         seller = sellerDao.findById(updateId);
         seller.setName("Martha Waine");
         sellerDao.update(seller);
-        System.out.println("Update completed ");
+        System.out.println("Update completed");
+
+        System.out.println("\n==== TEST 6: seller delete ====");
+        System.out.print("Insert seller id to delete: ");
+        int deleteId = sc.nextInt();
+        sellerDao.deleteById(deleteId);
+        System.out.println("Deleted entry of Id -> " + deleteId);
+
+
+
 
     }
 }
