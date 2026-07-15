@@ -55,8 +55,6 @@ public class Program {
         sellerDao.deleteById(deleteId);
         System.out.println("Deleted entry of Id -> " + deleteId);
 
-
-
-
+        sc.close();
     }
 }

@@ -1,0 +1,62 @@
+package application;
+
+import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
+import model.dao.impl.DepartmentDaoJDBC;
+import model.dao.impl.SellerDaoJDBC;
+import model.entities.Department;
+import model.entities.Seller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Program2 {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        List<Department> list = new ArrayList<>();
+
+        DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+
+        System.out.println("==== TEST 1: department findById ====");
+        Department dep = departmentDao.findById(3);
+        System.out.println(dep);
+
+        System.out.println("\n==== TEST 2: department findAll ====");
+        list = departmentDao.findAll();
+        for (Department obj : list){
+            System.out.println(obj);
+        }
+
+        System.out.println("\n==== TEST 3: department insert ====");
+        System.out.print("Insert new department name: ");
+        String newDepartmentName = sc.nextLine();
+        Department newDepartment = new Department(null, newDepartmentName);
+        departmentDao.insert(newDepartment);
+        System.out.println("New department created!");
+
+        System.out.println("\n==== TEST 4: department update ====");
+        System.out.print("Insert department Id to update: ");
+        int depId = sc.nextInt();
+        dep = departmentDao.findById(depId);
+        System.out.print("Enter new department name: ");
+        sc.nextLine();
+        String newDepName = sc.nextLine();
+        dep.setName(newDepName);
+        departmentDao.update(dep);
+        System.out.println("Department updated!");
+
+        System.out.println("\n==== TEST 5: department delete ====");
+        System.out.print("Insert department Id to delete: ");
+        depId = sc.nextInt();
+        departmentDao.deleteById(depId);
+        System.out.println("Department Id -> " + depId + " deleted!");
+
+
+
+
+
+    }
+}
